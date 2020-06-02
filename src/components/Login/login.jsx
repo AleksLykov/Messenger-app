@@ -68,6 +68,7 @@ function Login(props) {
         fullWidth
         variant='outlined'
         className={classes.inputNew}
+        value={newUserName}
         onChange={(e) => setNewUserName(e.target.value)}
         inputProps={{ className:  classes.input}}
       />
