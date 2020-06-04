@@ -30,7 +30,12 @@ function ListMessages(props) {
       <Paper elevation={2} className={classes.messages}>
         {list && list.map(item => <MessageItem key={item.fromId+item.text} message={item} currentUser={currentUser} />)}
       </Paper>
-      <InputMessage disabled={!!!currentFriend} setNewMessage={setNewMessage} />
+      <InputMessage
+        disabled={!!!currentFriend}
+        setNewMessage={setNewMessage}
+        currentFriend={currentFriend}
+        currentUser={currentUser}
+      />
     </Paper>
   )
 }

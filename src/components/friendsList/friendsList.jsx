@@ -59,7 +59,14 @@ function FriendsList(props) {
             </Avatar>
           }
           title={currentUserProfile.name}
-          action={<IconButton aria-label="delete" className={classes.action} onClick={() => setCurrentUser()} ><TransferWithinAStationIcon /></IconButton>}
+          action={ 
+            <IconButton
+              aria-label="delete"
+              className={classes.action}
+              onClick={() => { setCurrentUser(); setCurrentFriend() }}
+            >
+              <TransferWithinAStationIcon />
+            </IconButton>}
         />
       </Card>
       <h4 className={classes.header}>Friend List:</h4>

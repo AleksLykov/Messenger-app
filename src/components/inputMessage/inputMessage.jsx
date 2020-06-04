@@ -15,8 +15,10 @@ const styles = theme => ({
   },
 });
 
+const oldMessages = new Map()
+
 function InputMessage(props) {
-  const { classes, setNewMessage, disabled } = props;
+  const { classes, setNewMessage, disabled, currentFriend, currentUser } = props;
 
   const [message, setMessage] = React.useState('')
 
@@ -24,6 +26,11 @@ function InputMessage(props) {
     setNewMessage(message)
     setMessage('')
   }
+  
+  React.useEffect(() => {
+    oldMessages.has(currentFriend) ? setMessage(oldMessages.get(currentFriend)) : setMessage('')
+  }, [currentFriend])
+  React.useEffect(() => { oldMessages.clear() }, [currentUser])
 
   return (
     <Paper className={classes.paper} elevation={0}>
@@ -33,7 +40,7 @@ function InputMessage(props) {
         className={classes.field}
         disabled={disabled}
         inputProps={{ className:  classes.input}}
-        onChange={ e => setMessage(e.target.value)}
+        onChange={ e => {setMessage(e.target.value); oldMessages.set(currentFriend, e.target.value);}}
         value={message}
       />
       <IconButton disabled={disabled} onClick={sendMessage}><SendIcon /></IconButton>
